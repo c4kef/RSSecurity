@@ -1,0 +1,32 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RFDesign.Pages.SystemPage">
+  <StackPanel Margin="{StaticResource PageMargin}" Background="Transparent"
+              Orientation="Horizontal"
+              Spacing="40">
+    <StackPanel.Styles>
+      <Style Selector="TextBlock.header">
+        <Setter Property="Margin" Value="0 30 0 20" />
+      </Style>
+    </StackPanel.Styles>
+    <StackPanel>
+      <TextBlock Text="Файловая система" Classes="header" />
+      <CheckBox
+          Content="Защита файлов"
+          IsChecked="{Binding IsSetProtectFiles}"
+          Margin="0,8,0,0"
+          />
+    </StackPanel>
+    <StackPanel>
+      <TextBlock Text="Время" Classes="header"/>
+      <CheckBox Content="Автоматически" IsChecked="{Binding IsSyncTimeAuto}" Margin="0,8,0,0"/>
+      
+      <DatePicker x:Name="MDY" YearVisible="True" SelectedDateChanged="SelectedDateChanged" SelectedDate="{Binding GetMDY}" IsEnabled="{Binding !IsSyncTimeAuto}"/>
+      <TimePicker ClockIdentifier="24HourClock" x:Name="HM" SelectedTimeChanged="SelectTimeChanged" SelectedTime="{Binding GetHM}" IsEnabled="{Binding !IsSyncTimeAuto}"/>
+    </StackPanel>
+  </StackPanel>
+
+</UserControl>
